@@ -1,0 +1,16 @@
+<div class='container'>
+	<div class='row'>
+		<div class='col-md-6 col-md-offset-3'>	
+			<h1>Tasks</h1>
+			<ul class='list-group'>
+				<% @tasks.each do |t| %>
+					<li class='list-group-item'>
+						<%= t.name %>
+						<span class='glyphicon glyphicon-check pull-right'></span>
+						<span class='glyphicon glyphicon-trash pull-right'></span>
+					</li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</div>
