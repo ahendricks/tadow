@@ -6,8 +6,10 @@
 				<% @tasks.each do |t| %>
 					<li class='list-group-item'>
 						<%= t.name %>
-						<span class='glyphicon glyphicon-check pull-right'></span>
-						<span class='glyphicon glyphicon-trash pull-right'></span>
+						<span class='pull-right'>
+							<span class='glyphicon glyphicon-check'></span>
+							<span class='glyphicon glyphicon-trash'></span>
+						</span>
 					</li>
 				<% end %>
 			</ul>
