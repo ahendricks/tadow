@@ -14,10 +14,23 @@ class TasksController < ApplicationController
   		redirect_to root_path
   	end
   end
-end
 
-private
 
-	def task_params
-		params.require(:task).permit(:name)
-	end
+  def destroy
+    @task = Task.find(params[:id])
+    if @task.destroy
+      flash[:success] = "Task successfully deleted."
+      redirect_to root_path
+    else
+      flash[:warning] = "Task not deleted."
+      redirect_to root_path
+    end
+  end
+
+  private
+
+  	def task_params
+  		params.require(:task).permit(:name)
+  	end
+
+  end

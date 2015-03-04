@@ -1,0 +1,6 @@
+# fake tasks
+task1:
+  name: clean your room
+
+task2:
+  name: play videogames
