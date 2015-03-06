@@ -13,7 +13,7 @@
 				</li>
 				<% @tasks.each do |t| %>
 					<li class='list-group-item'>
-						<%= t.name %>
+						<%= "#{ t.name } - #{ t.due_date.strftime("%A") }" %>
 						<span class='pull-right'>
 							<span class='glyphicon glyphicon-check'></span>
 							<%= link_to "<span class='glyphicon glyphicon-trash'></span>".html_safe, task_path(t), method: 'delete' %>
