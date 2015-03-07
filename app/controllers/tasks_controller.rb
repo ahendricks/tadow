@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   def index
-  	@tasks = Task.all
+  	@tasks = Task.where(due_date: Date.today.beginning_of_week-1..Date.today.end_of_week-1)
   	@new_task = Task.new
   end
 
