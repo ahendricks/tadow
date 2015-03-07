@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   def index
   	@tasks = Task.where(due_date: Date.today.beginning_of_week-1..Date.today.end_of_week-1)
   	@new_task = Task.new
-    @dates = Date.today.beginning_of_week-1..Date.today.end_of_week-1
+    @dates = date_range(params[:offset].to_i)
   end
 
   def create
@@ -44,5 +44,10 @@ class TasksController < ApplicationController
   	def task_params
   		params.require(:task).permit(:name)
   	end
+
+    def date_range offset = 0
+      Date.today.beginning_of_week-1+(offset*7)..Date.today.end_of_week-1+(offset*7)
+    end
+
 
   end
