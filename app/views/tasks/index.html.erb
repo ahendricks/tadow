@@ -10,30 +10,24 @@
 
 			<br />
 
-			<div class="panel-group" id="accordion">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-plus"></span>Friday</a>
-            </h4>
-          </div>
-          <div id="collapseOne" class="panel-collapse collapse in">
-            <ul class="list-group">
-
-              <% @tasks.each do |t| %>
-								<li class='list-group-item'>
-									<%= "#{ t.name } - #{ t.due_date.strftime("%A") } #{ "- Complete" if t.completed_date }" %>
-									<span class='pull-right'>
-										<%= link_to "<span class='glyphicon glyphicon-check'></span>".html_safe, complete_task_path(t), method: 'patch' %>
-										<%= link_to "<span class='glyphicon glyphicon-trash'></span>".html_safe, task_path(t), method: 'delete' %>
-									</span>
-								</li>
-							<% end %>
-
-            </ul>
-          </div>
-        </div>
-      </div>
+			<% @tasks.group_by(&:due_date).each do |day, tasks| %>
+				<div class="panel-group" id="accordionTwo">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<a class="accordion-toggle" data-toggle="collapse" href=<%= "#collapse-#{day}" %>><%= day.strftime("%A") %></a>
+							<div class="count-badge pull-right">
+								<span class="badge"><%= tasks.count %></span>
+							</div>
+						</div>
+						<div class="panel-collapse collapse in" id=<%= "collapse-#{day}" %>>
+							<div class="list-group">
+								<%= render tasks %>
+							</div>
+						</div>
+					</div>
+				</div>
+			<% end %>
+			
     </div>
 	</div>
 </div>

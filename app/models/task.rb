@@ -7,4 +7,8 @@ class Task < ActiveRecord::Base
 	def set_due_date_to_today
 		self.due_date = Time.now
 	end
+
+	def day
+		due_date.strftime("%A")
+	end
 end
