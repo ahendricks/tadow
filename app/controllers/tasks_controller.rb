@@ -3,6 +3,11 @@ class TasksController < ApplicationController
   	@tasks = Task.where(due_date: Date.today.beginning_of_week-1..Date.today.end_of_week-1)
   	@new_task = Task.new
     @dates = date_range(params[:offset].to_i)
+    if params[:offset].nil?
+      @current_offset = 0
+    else
+      @current_offset = params[:offset].to_i
+    end
   end
 
   def create

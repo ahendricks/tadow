@@ -1,7 +1,13 @@
 <div class='container'>
 	<div class='row'>
 		<div class='col-md-6 col-md-offset-3'>	
+			
+
 			<h1>Tasks</h1>
+			<p>Week of: <%= "#{@dates.first} to #{@dates.last}" %><br />
+				<%= link_to "<span class='glyphicon glyphicon-chevron-left'></span> Previous".html_safe, root_path(offset: @current_offset-1) %> |
+				<%= link_to "Next <span class='glyphicon glyphicon-chevron-right'></span>".html_safe, root_path(offset: @current_offset+1) %>
+			</p>
 			<%= form_for @new_task, html: { class: 'form-inline' } do |f| %>
 				<%= f.text_field :name, class: 'form-control', 
 																placeholder: 'Enter task name' %>
