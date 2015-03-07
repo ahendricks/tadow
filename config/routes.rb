@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'tasks#index'
+  match '/tasks/complete/:id' => 'tasks#complete', as: 'complete_task', via: :patch
   resources :tasks, only: [:index, :new, :create, :edit, :update, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.

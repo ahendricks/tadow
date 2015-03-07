@@ -15,6 +15,17 @@ class TasksController < ApplicationController
   	end
   end
 
+  def complete
+    @task = Task.find(params[:id])
+    @task.completed_date = Time.now
+    if @task.save
+      flash[:success] = "Task marked as complete."
+      redirect_to root_path
+    else
+      flash[:warning] = "Task not completed."
+      redirect_to root_path
+    end
+  end
 
   def destroy
     @task = Task.find(params[:id])
