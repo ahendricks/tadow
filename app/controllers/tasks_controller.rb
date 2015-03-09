@@ -21,6 +21,17 @@ class TasksController < ApplicationController
   	end
   end
 
+  def update 
+    @task = Task.find(params[:id])
+    if @task.update_attributes(task_params)
+      flash[:success] = "Task successfully updated."
+      redirect_to root_path
+    else
+      flash[:warning] = "Task not updated."
+      redirect_to root_path
+    end
+  end
+
   def complete
     @task = Task.find(params[:id])
     @task.completed_date = Time.now
@@ -47,7 +58,7 @@ class TasksController < ApplicationController
   private
 
   	def task_params
-  		params.require(:task).permit(:name)
+  		params.require(:task).permit(:name, :due_date)
   	end
 
     def date_range offset = 0

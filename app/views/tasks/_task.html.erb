@@ -1,7 +1,11 @@
 <li class='list-group-item'>
 	<%= "#{ task.name } #{ "- Complete" if task.completed_date }" %>
 	<span class='pull-right'>
-		<%= link_to "<span class='glyphicon glyphicon-check'></span>".html_safe, complete_task_path(task), method: 'patch' %>
+		<%= form_for task, url: task_path(task), method: 'patch', html: {class: 'form-inline'} do |f| %>
+			<%= f.text_field :due_date, class: "form-control" %>
+			<%= link_to "<span class='glyphicon glyphicon-check'></span>".html_safe, complete_task_path(task), method: 'patch' %>
 		<%= link_to "<span class='glyphicon glyphicon-trash'></span>".html_safe, task_path(task), method: 'delete' %>
+		<% end %>
+		
 	</span>
 </li>
