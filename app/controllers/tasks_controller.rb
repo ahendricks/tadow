@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   def index
-  	@tasks = Task.where(due_date: Date.today.beginning_of_week-1..Date.today.end_of_week-1)
+  	@tasks = Task.where(due_date: date_range(params[:offset].to_i))
   	@new_task = Task.new
     @dates = date_range(params[:offset].to_i)
     if params[:offset].nil?
@@ -51,7 +51,7 @@ class TasksController < ApplicationController
   	end
 
     def date_range offset = 0
-      Date.today.beginning_of_week-1+(offset*7)..Date.today.end_of_week-1+(offset*7)
+      Date.today.beginning_of_week(start_day = :sunday)+(offset*7)..Date.today.end_of_week(start_day = :sunday)+(offset*7)
     end
 
 

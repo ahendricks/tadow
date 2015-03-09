@@ -1,8 +1,16 @@
 # fake tasks
 task1:
   name: clean your room
-  due_date: <%= Time.now %>
+  due_date: <%= Date.today %>
 
 task2:
   name: play videogames
-  due_date: <%= Time.now %>
+  due_date: <%= Date.today %>
+
+older_task:
+  name: do older stuff
+  due_date: <%= Date.today - 7 %>
+
+newer_task:
+  name: do newer stuff
+  due_date: <%= Date.today + 7 %>

@@ -11,7 +11,7 @@ class TasksCompleteTest < ActionDispatch::IntegrationTest
 		patch complete_task_path(@task)
 		@task.reload
 		assert @task.completed_date
-		assert_redirected_to root_path 
+		assert_redirected_to root_path
 	end
 
 end
